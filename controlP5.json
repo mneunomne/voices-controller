@@ -1,0 +1,390 @@
+{
+  "/drywet_echo_7": {
+    "min": 0,
+    "max": 1,
+    "value": 0
+  },
+  "/drywet_echo_6": {
+    "min": 0,
+    "max": 1,
+    "value": 0
+  },
+  "/drywet_echo_5": {
+    "min": 0,
+    "max": 1,
+    "value": 0
+  },
+  "/label_0": {
+    "stringValue": "Voice 0",
+    "value": 0
+  },
+  "/reverse_0": {"value": 0},
+  "/reverse_1": {"value": 0},
+  "/label_1": {
+    "stringValue": "Voice 1",
+    "value": 0
+  },
+  "/reverse_2": {"value": 0},
+  "/reverse_3": {"value": 0},
+  "/reverse_4": {"value": 0},
+  "/label_4": {
+    "stringValue": "Voice 4",
+    "value": 0
+  },
+  "/reverse_5": {"value": 0},
+  "/label_5": {
+    "stringValue": "Voice 5",
+    "value": 0
+  },
+  "/reverse_6": {"value": 0},
+  "/label_2": {
+    "stringValue": "Voice 2",
+    "value": 0
+  },
+  "/label_3": {
+    "stringValue": "Voice 3",
+    "value": 0
+  },
+  "/reverse_7": {"value": 0},
+  "/label_6": {
+    "stringValue": "Voice 6",
+    "value": 0
+  },
+  "/label_7": {
+    "stringValue": "Voice 7",
+    "value": 0
+  },
+  "/echo": {
+    "min": 0,
+    "max": 1,
+    "value": 1
+  },
+  "/drywet_echo_0": {
+    "min": 0,
+    "max": 1,
+    "value": 0
+  },
+  "/drywet_echo_4": {
+    "min": 0,
+    "max": 1,
+    "value": 0
+  },
+  "/drywet_echo_3": {
+    "min": 0,
+    "max": 1,
+    "value": 0
+  },
+  "/drywet_echo_2": {
+    "min": 0,
+    "max": 1,
+    "value": 0
+  },
+  "/drywet_echo_1": {
+    "min": 0,
+    "max": 1,
+    "value": 0
+  },
+  "/interval_1": {
+    "min": 0,
+    "max": 60000,
+    "value": 5000
+  },
+  "/interval_2": {
+    "min": 0,
+    "max": 60000,
+    "value": 5000
+  },
+  "/interval_0": {
+    "min": 0,
+    "max": 60000,
+    "value": 5000
+  },
+  "/drywet_reverb_5": {
+    "min": 0,
+    "max": 1,
+    "value": 0
+  },
+  "/drywet_reverb_4": {
+    "min": 0,
+    "max": 1,
+    "value": 0
+  },
+  "/drywet_reverb_7": {
+    "min": 0,
+    "max": 1,
+    "value": 0
+  },
+  "/interval_7": {
+    "min": 0,
+    "max": 60000,
+    "value": 5000
+  },
+  "/drywet_reverb_6": {
+    "min": 0,
+    "max": 1,
+    "value": 0
+  },
+  "/interval_5": {
+    "min": 0,
+    "max": 60000,
+    "value": 5000
+  },
+  "/drywet_reverb_1": {
+    "min": 0,
+    "max": 1,
+    "value": 0
+  },
+  "/interval_6": {
+    "min": 0,
+    "max": 60000,
+    "value": 5000
+  },
+  "/drywet_reverb_0": {
+    "min": 0,
+    "max": 1,
+    "value": 0
+  },
+  "/interval_3": {
+    "min": 0,
+    "max": 60000,
+    "value": 5000
+  },
+  "/drywet_reverb_3": {
+    "min": 0,
+    "max": 1,
+    "value": 0
+  },
+  "/drywet_reverb_2": {
+    "min": 0,
+    "max": 1,
+    "value": 0
+  },
+  "/interval_4": {
+    "min": 0,
+    "max": 60000,
+    "value": 5000
+  },
+  "/chopper_0": {"value": 0},
+  "/chopper_2": {"value": 0},
+  "/chopper_1": {"value": 0},
+  "/chopper_4": {"value": 0},
+  "/chopper_3": {"value": 0},
+  "/chopper_6": {"value": 0},
+  "/chopper_5": {"value": 0},
+  "/reverb": {
+    "min": 0,
+    "max": 1,
+    "value": 0
+  },
+  "/current_text_3": {
+    "stringValue": "",
+    "value": 0
+  },
+  "/volume_3": {
+    "min": 0,
+    "max": 1,
+    "value": 0.75
+  },
+  "/current_text_4": {
+    "stringValue": "",
+    "value": 0
+  },
+  "/volume_2": {
+    "min": 0,
+    "max": 1,
+    "value": 0.75
+  },
+  "/current_text_1": {
+    "stringValue": "",
+    "value": 0
+  },
+  "/volume_5": {
+    "min": 0,
+    "max": 1,
+    "value": 0.75
+  },
+  "/volume_4": {
+    "min": 0,
+    "max": 1,
+    "value": 0.75
+  },
+  "/current_text_2": {
+    "stringValue": "",
+    "value": 0
+  },
+  "/current_text_0": {
+    "stringValue": "",
+    "value": 0
+  },
+  "/volume_1": {
+    "min": 0,
+    "max": 1,
+    "value": 0.75
+  },
+  "/volume_0": {
+    "min": 0,
+    "max": 1,
+    "value": 0.75
+  },
+  "/current_text_7": {
+    "stringValue": "",
+    "value": 0
+  },
+  "/current_text_5": {
+    "stringValue": "",
+    "value": 0
+  },
+  "/current_text_6": {
+    "stringValue": "",
+    "value": 0
+  },
+  "/stutter_7": {"value": 0},
+  "/stutter_6": {"value": 0},
+  "/stutter_5": {"value": 0},
+  "/stutter_4": {"value": 0},
+  "/stutter_3": {"value": 0},
+  "/stutter_2": {"value": 0},
+  "/stutter_1": {"value": 0},
+  "/stutter_0": {"value": 0},
+  "/speed_0": {
+    "min": 0,
+    "max": 1,
+    "value": 0.5
+  },
+  "/speed_2": {
+    "min": 0,
+    "max": 1,
+    "value": 0.5
+  },
+  "/speed_1": {
+    "min": 0,
+    "max": 1,
+    "value": 0.5
+  },
+  "/speed_4": {
+    "min": 0,
+    "max": 1,
+    "value": 0.5
+  },
+  "/speed_3": {
+    "min": 0,
+    "max": 1,
+    "value": 0.5
+  },
+  "/speed_6": {
+    "min": 0,
+    "max": 1,
+    "value": 0.5
+  },
+  "/speed_5": {
+    "min": 0,
+    "max": 1,
+    "value": 0.5
+  },
+  "/speed_7": {
+    "min": 0,
+    "max": 1,
+    "value": 0.5
+  },
+  "/volume_7": {
+    "min": 0,
+    "max": 1,
+    "value": 0.75
+  },
+  "/volume_6": {
+    "min": 0,
+    "max": 1,
+    "value": 0.75
+  },
+  "/pan_0": {
+    "min": 0,
+    "max": 1,
+    "value": 0.5
+  },
+  "/chopper_7": {"value": 0},
+  "/pan_4": {
+    "min": 0,
+    "max": 1,
+    "value": 0.5
+  },
+  "/eq_1": {
+    "min": 0,
+    "max": 1,
+    "value": 0.5
+  },
+  "/eq_0": {
+    "min": 0,
+    "max": 1,
+    "value": 0.5
+  },
+  "/pan_3": {
+    "min": 0,
+    "max": 1,
+    "value": 0.5
+  },
+  "/num_speakers": {
+    "min": 0,
+    "max": 8,
+    "value": 0
+  },
+  "/eq_3": {
+    "min": 0,
+    "max": 1,
+    "value": 0.5
+  },
+  "/pan_2": {
+    "min": 0,
+    "max": 1,
+    "value": 0.5
+  },
+  "/eq_2": {
+    "min": 0,
+    "max": 1,
+    "value": 0.5
+  },
+  "/pan_1": {
+    "min": 0,
+    "max": 1,
+    "value": 0.5
+  },
+  "/pan_7": {
+    "min": 0,
+    "max": 1,
+    "value": 0.5
+  },
+  "/pan_6": {
+    "min": 0,
+    "max": 1,
+    "value": 0.5
+  },
+  "/pan_5": {
+    "min": 0,
+    "max": 1,
+    "value": 0.5
+  },
+  "/eq_5": {
+    "min": 0,
+    "max": 1,
+    "value": 0.5
+  },
+  "/eq_4": {
+    "min": 0,
+    "max": 1,
+    "value": 0.5
+  },
+  "/eq_7": {
+    "min": 0,
+    "max": 1,
+    "value": 0.5
+  },
+  "/eq_6": {
+    "min": 0,
+    "max": 1,
+    "value": 0.5
+  },
+  "/echo_fdbk": {
+    "min": 0,
+    "max": 1,
+    "value": 1
+  }
+}
