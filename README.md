@@ -1,6 +1,6 @@
 # Voices Controller
 
-![](screenshot.png)
+![](screenshot_1.png)
 
 ## Run
 ```
