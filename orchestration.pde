@@ -11,18 +11,14 @@ public class Orchestration {
     audios = _audios;
     // initiate all voices
     for (int i = 0; i < maxNumVoices; i++) {
-     voices[i] = new Voice(i, i < numActiveVoices); 
+     voices[i] = new Voice(i, activeVoices[i]); 
     }
   }
   
-  void setActiveVoices (int amount) {
-    numActiveVoices = amount;
+  void setActiveVoices () {
+    // numActiveVoices = amount;
     for(int i = 0; i < maxNumVoices; i++) {
-      if (i < numActiveVoices) {
-        voices[i].setActive(true); 
-      } else {
-        voices[i].setActive(false);
-      }
+        voices[i].setActive(activeVoices[i]);
     }
   }
   
@@ -79,9 +75,11 @@ public class Orchestration {
   }
   
   long [] getCurrentSpeakerId () {
-    long [] ids = new long[numActiveVoices];
-    for(int i = 0; i < numActiveVoices; i++) {
+    long [] ids = new long[maxNumVoices];
+    for(int i = 0; i < maxNumVoices; i++) {
+      if (activeVoices[i]) {
        ids[i] = voices[i].getSpeakerId();
+      }
     }
     return ids;
   }

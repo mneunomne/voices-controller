@@ -50,6 +50,15 @@ public class Voice {
       .setPosition(ui_pos_x,ui_pos_y)
       .setColorValue(0xffffff00)
       .setFont(createFont("Georgia",14));
+     // create a toggle
+  cp5.addToggle("activate_" + index)
+     .setPosition(ui_pos_x + 90 ,ui_pos_y)
+     .setSize(50,15)
+     .setValue(false)
+     .setLabel("")
+     //.setMode(ControlP5.SWITCH)
+     ;
+
     int y = 15;
     tl = cp5.addTextlabel("current_text_" + index)
       .setText("")
@@ -60,7 +69,7 @@ public class Voice {
     cp5.addSlider("interval_" + index)
       .setPosition(ui_pos_x, ui_pos_y + y)
       .setSize(140,10)
-      .setRange(0, 60000)
+      .setRange(0, maxInterval)
       .setValue(interval);
     y += 15;
     cp5.addSlider("volume_" + index)

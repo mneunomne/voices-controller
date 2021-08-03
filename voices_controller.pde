@@ -7,6 +7,10 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.io.UnsupportedEncodingException;
 
+import themidibus.*; //Import the library
+
+MidiBus bus; //The first MidiBus
+
 OscP5 oscP5;
 NetAddress remoteBroadcast; 
 NetAddress localBroadcast; 
@@ -21,6 +25,10 @@ int maxNumVoices = 8;
 int numActiveVoices = 1;
 int initialInterval = 3000;
 int numSpeakers = 25;
+
+int maxInterval = 10000;
+
+boolean [] activeVoices = {false,false,false,false,false,false,false,false}; 
 
 String[] effects = {"volume", "eq","drywet_echo","drywet_reverb","pan", "speed", "stutter", "chopper", "reverse"};
 String[] globalEffects = {"echo", "reverb", "echo_fdbk"};
@@ -49,15 +57,27 @@ void setup () {
 
   // start orchestration
   cp5 = new ControlP5(this);
-
   orchestration = new Orchestration(audios);
-
   setController();
-  
+
+  connectMIDIController();
+}
+
+void connectMIDIController () {
+  MidiBus.list(); //List all available Midi devices. This will show each device's index and name.
+
+  System.out.println("----------Input (from availableInputs())----------");
+  String[] available_inputs = MidiBus.availableInputs(); //Returns an array of available input devices
+  for (int i = 0;i < available_inputs.length;i++) System.out.println("["+i+"] \""+available_inputs[i]+"\"");
+
+  bus = new MidiBus(this, "FAD"); //Create a first new MidiBus attached to the IncommingA Midi input device and the OutgoingA Midi output device. We will name it busA.
+
+  bus.addInput("FAD.9"); //Add a new input device to busB called IncommingC
 }
 
 void setController () {
   int y = 0;
+  /*
   cp5.addSlider("num_speakers")
      .setPosition(margin, margin + y)
      .setSize(200,15)
@@ -66,6 +86,7 @@ void setController () {
      .setValue(numActiveVoices)
      ;
   y += 30;
+  */
   cp5.addSlider("reverb")
     .setPosition(margin, margin + y)
     .setSize(140,15)
@@ -98,47 +119,38 @@ void draw() {
   orchestration.update();
 }
 
+/*
 void num_speakers (float val) {
   println("val", val);
   orchestration.setActiveVoices(int(val));
 }
+*/
 
 void controlEvent(ControlEvent theControlEvent) {
-
-  
+  // -------------------------------------------------
+  // voices individual effects
   for (int i = 0; i < maxNumVoices; i++) {
     // interval controller
     if(theControlEvent.isFrom("interval_" + i)) {
       float interval_value = theControlEvent.getController().getValue();
       orchestration.setVoiceInterval(i, int(interval_value));
     }
-
-
     for (int j = 0; j < effects.length; j++) {
       String effect = effects[j];
       if(theControlEvent.isFrom(effect + "_" + i)) {
-
         if (effect == "speed" || effect == "reverse") {
-          
           OscMessage effectMessage = new OscMessage("/speed");
-          
           float speed_val = cp5.getController("speed_" + i).getValue();
           float reverse_val = cp5.getController("reverse_" + i).getValue();
-
           effectMessage.add(i);
           effectMessage.add(int(map(speed_val, 0, 1, 0, 100)));
           effectMessage.add(int(map(reverse_val, 0, 1, 0, 100)));
-
           println("speed change!", i);
-
           // send 
           oscP5.send(effectMessage, remoteBroadcast);
-          oscP5.send(effectMessage, localBroadcast);
-          
+          oscP5.send(effectMessage, localBroadcast);  
           return;
-      }
-
-
+        }
         // effect message
         OscMessage effectMessage = new OscMessage("/" + effect);
         // get value from cp5
@@ -164,8 +176,21 @@ void controlEvent(ControlEvent theControlEvent) {
       String text = theControlEvent.getStringValue();
       orchestration.setVoiceTextFilter(i, text);
     }
-  }
 
+    // -------------------------------------------------
+    // individual voices toggle
+    if (theControlEvent.isFrom("activate_" + i)) {
+      float value = theControlEvent.getController().getValue();
+      println("boolean value", value, i);
+      activeVoices[i] = value == 1.0;
+      orchestration.setActiveVoices();
+      // orchestration.setVoiceTextFilter(i, text);
+    }
+  }
+  // -------------------------------------------------
+
+  // -------------------------------------------------
+  // global effects
   for (int i = 0; i < globalEffects.length; i++) {
     String effect = globalEffects[i];
     if(theControlEvent.isFrom(effect)) {
@@ -231,6 +256,58 @@ void sendInitialValues () {
       effectMessage.add(value);
       oscP5.send(effectMessage, remoteBroadcast);
       oscP5.send(effectMessage, localBroadcast);
+  }
+}
+
+void controllerChange(int channel, int number, int value, long timestamp, String bus_name) {  
+  int sliders0 = 18;
+  int knob0 = 27;
+  int io0 = 36;
+
+  int generalSlider  = 26;
+  int generalKnob  = 35;
+  int generalIo  = 44;
+
+  float fValue = map(value, 0, 127, 0, 1);
+  
+  float intervalValue = fValue * maxInterval;
+
+  if (number == generalSlider) {
+    for (int i =0; i < 8; i++) {
+      cp5.getController("interval_" + i).setValue(intervalValue);
+    }
+  }
+  if (number == generalKnob) {
+    for (int i =0; i < 8; i++) {
+      cp5.getController("volume_" + i).setValue(fValue);
+    }
+  }
+  if (number == generalIo) {
+    for (int i =0; i < 8; i++) {
+      cp5.getController("activate_" + i).setValue(fValue);
+    }
+  }
+
+  for (int i =0; i < 8; i++) {
+    // interval
+    if (number == sliders0 + i) {
+      println("voice " + i);
+      println("slider " + value);
+
+      cp5.getController("interval_" + i).setValue(intervalValue);
+    }
+    // volume
+    if (number == knob0 + i) {
+      println("voice " + i);
+      println("knob " + value);
+      cp5.getController("volume_" + i).setValue(fValue);
+    }
+    // toggle
+    if (number == io0 + i) {
+      println("voice " + i);
+      println("io " + value);
+      cp5.getController("activate_" + i).setValue(fValue);
+    }
   }
 }
 
