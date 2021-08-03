@@ -84,6 +84,10 @@
     "max": 1,
     "value": 0
   },
+  "/input_7": {"text": ""},
+  "/input_6": {"text": ""},
+  "/input_5": {"text": ""},
+  "/input_4": {"text": ""},
   "/interval_1": {
     "min": 0,
     "max": 60000,
@@ -99,6 +103,10 @@
     "max": 60000,
     "value": 5000
   },
+  "/input_3": {"text": ""},
+  "/input_2": {"text": ""},
+  "/input_1": {"text": "asdasda"},
+  "/input_0": {"text": ""},
   "/drywet_reverb_5": {
     "min": 0,
     "max": 1,

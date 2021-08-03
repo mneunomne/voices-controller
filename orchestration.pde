@@ -32,39 +32,24 @@ public class Orchestration {
     }
   }
 
-  JSONObject getNextAudio (int voiceIndex) {
+  JSONObject getNextAudio (int voiceIndex, String textFilter) {
     ArrayList<JSONObject> filtered = new ArrayList<JSONObject>();
+    ArrayList<JSONObject> unfiltered = new ArrayList<JSONObject>();
     for (int i = 0; i < audios.size(); i++) {
       JSONObject obj = audios.getJSONObject(i);
-      long cur_id = obj.getLong("from_id");
-      boolean hasFound = false; 
-      boolean hasCategory = false; 
-      
-      /*
-      for (int j = 0; j < speakers.size(); j++) {
-        JSONObject item = speakers.getJSONObject(j); 
-        String category = item.getString("category");
-        String name = item.getString("speaker");
-        long _id = item.getLong("id");
-        if (_id != cur_id) continue;
-        if (category.contains(categories[floor(voiceIndex/2)])) {
-          println("added", category, categories[floor(voiceIndex/2)], name);
-          hasCategory = true;
-        }
+      String cur_name = obj.getString("from").toLowerCase();
+      if (cur_name.contains(textFilter)) {
+        filtered.add(obj);
       }
-      */
-      hasCategory = true;
-      for (long id : getCurrentSpeakerId()) {
-         if (cur_id == id) {
-            hasFound = true;
-         }
-      }
-      if (!hasFound && hasCategory) {
-         filtered.add(obj);
-      }
+      unfiltered.add(obj);
     }
-    int index = floor(random(0, filtered.size())); 
-    return filtered.get(index);
+    if (filtered.size() > 0) {
+      int index = floor(random(0, filtered.size())); 
+      return filtered.get(index);
+    } else {
+      int index = floor(random(0, unfiltered.size())); 
+      return unfiltered.get(index);
+    }
   }
   
   void sendOscplay (long speakerId, int audioID, String audioText, int index) {
@@ -101,6 +86,10 @@ public class Orchestration {
     return ids;
   }
   
+  void setVoiceTextFilter (int index, String value) {
+    voices[index].setTextfilter(value);
+  }
+
   void setVoiceInterval (int index, int value) {
     voices[index].setInterval(value);
   }

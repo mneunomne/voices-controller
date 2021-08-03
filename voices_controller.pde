@@ -33,10 +33,12 @@ ArrayList<String> availableVoices = new ArrayList<String>();
 
 // cp5 position
 int margin = 10;
-
+PFont inputFont; 
 void setup () {
   size(900, 800);
+
   PFont font = createFont("Courier New",12,true);
+  inputFont = createFont("Courier New",9,true);
 
   // load audios
   json = loadJSONObject("data.json");
@@ -156,6 +158,12 @@ void controlEvent(ControlEvent theControlEvent) {
         oscP5.send(effectMessage, localBroadcast);
       }
     }
+
+    // text filter
+    if (theControlEvent.isFrom("textfilter_" + i)) {
+      String text = theControlEvent.getStringValue();
+      orchestration.setVoiceTextFilter(i, text);
+    }
   }
 
   for (int i = 0; i < globalEffects.length; i++) {
@@ -227,13 +235,13 @@ void sendInitialValues () {
 }
 
 void keyPressed () {
- if (key == 's' || key == 'S') {
+ if (key == 'S') {
    cp5.saveProperties();
  }
- if (key == 'l' || key == 'L') {
+ if (key == 'L') {
    cp5.loadProperties();
  }
- if (key == 'i' || key == 'I') {
+ if (key == 'I') {
    sendInitialValues();
  }
 }

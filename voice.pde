@@ -12,6 +12,8 @@ public class Voice {
   float reverse = 0;
   float volume = 0.75;
 
+  String textFilter = "";
+
   // id
   int id;
   int index;
@@ -112,6 +114,14 @@ public class Voice {
       .setSize(40,10)
       .setValue(reverse);
       ;
+    y += 15;
+    cp5.addTextfield("textfilter_" + index)
+     .setPosition(ui_pos_x, ui_pos_y + y)
+     .setSize(140,15)
+     .setFont(inputFont)
+     .setColor(color(255))
+     .setAutoClear(false)
+     ;
   }
 
   void play (JSONObject audio) {
@@ -128,6 +138,10 @@ public class Voice {
     orchestration.sendOscplay(currentSpeakerId, curAudioId, curAudioText, index);
 
     tl.setValue(currentSpeakerName);
+  }
+
+  void textfilter (String text) {
+    println("AAAAAA");
   }
 
   void end () {
@@ -164,12 +178,17 @@ public class Voice {
     drywet_reverb = val; 
   }
 
+  void setTextfilter(String text) {
+    println("set text filter!", text);
+    textFilter = text;
+  }
+
   void update () {
     if (isActive) {
       if (!isPlaying) {
         if (millis() > lastTimeCheck + interval ) {
           // here pick on audio 
-          JSONObject audio = orchestration.getNextAudio(index);
+          JSONObject audio = orchestration.getNextAudio(index, textFilter);
           play(audio);
         }
       } else {
